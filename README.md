@@ -1,1 +1,1 @@
-[预加载属性 preload 与 prefetch 有什么区别](https://waynegong.cn/2020/11/preload-prefetch/)
+[预加载属性 preload 与 prefetch 区别](https://waynegong.cn/posts/40528.html)
