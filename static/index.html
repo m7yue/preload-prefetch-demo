@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <head>
-  <link rel="preload" href="/style.css?t=2000" as="style">
-  <link rel="preload" href="/main.js?t=2000" as="script">
+  <link rel="preload" href="/style.css?delay=2000" as="style">
+  <link rel="preload" href="/main.js" as="script">
 
-  <link rel="prefetch" href="/prefetch.css?t=1000" as="style">
-  <link rel="prefetch" href="/prefetch.js?t=1000" as="script">
+  <link rel="prefetch" href="/prefetch.css?delay=1000" as="style">
+  <link rel="prefetch" href="/prefetch.js?delay=1000" as="script">
 </head>
 <body>
   <p>hello world</p>
   <p class="preload">preload</p>
   <p class="prefetch">prefetch</p>
+  
+  <script>
+    setTimeout(() => {
+      if (location.href.indexOf('r') === -1) {
+        location.href = `http://localhost:3000?r=${Date.now()}`
+      }
+    }, 3000)
+  </script>
+
+  <script src="main.js"></script>
+  <!-- 必须路径一样才能命中预加载内容，包括查询字符串 -->
 </body>
 </html>

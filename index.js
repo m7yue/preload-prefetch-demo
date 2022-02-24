@@ -1,20 +1,15 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 9999;
 
-// static
-app.use(blockRequest, express.static("./static"));
-
-// listen port
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
-
-/**
- * block request
- */
-function blockRequest(req, res, next) {
+app.use((req, res, next) => {
   const { t, ma } = req.query;
-  ma && res.setHeader("Cache-Control", `max-age=${ma}`);
+  // res.setHeader("Cache-Control", `max-age=0`);
+  // res.setHeader("Cache-Control", `max-age=no-cache`);
+  res.setHeader("Cache-Control", `max-age=no-store`);
   setTimeout(next, t);
-}
+}, express.static("./static"));
+
+app.listen(port, () => {
+  console.log(`listening on http://localhost:${port}`);
+});
